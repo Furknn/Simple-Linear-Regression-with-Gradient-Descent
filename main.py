@@ -48,26 +48,3 @@ if __name__ == '__main__':
     X, Y = lgrd.generate_random_data(3, 7)
     lgrd.train_with_gd(X, Y, iterations, epsilon)
     lgrd.plot_data_label(X, Y)
-
-
-    print(lgrd.predict(X[0]))
-    print(Y[0])
-
-
-# def train_with_gd(self, X, y, epochs, e):
-#      N = float(len(y))
-#      for epoch in range(epochs):
-
-#          # MSE
-#          errors = []
-#          for i in range(int(N)):
-#              y_current = self.a_current * X[i] + self.b_current
-#              errors.append((y[i] - y_current) ** 2)
-#              a_gradient=-(2/N)-sum(X)
-
-#          self.error.append(sum(errors))
-
-#          m_gradient = -(2 / N) * sum(X * (y - y_current))
-#          b_gradient = -(2 / N) * sum(y - y_current)
-#          self.a_current = self.a_current - (e * m_gradient)
-#          self.b_current = self.b_current - (e * b_gradient)
