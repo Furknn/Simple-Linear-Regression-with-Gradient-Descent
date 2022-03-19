@@ -18,7 +18,6 @@ class LRGD:
         plt.plot(lgrd.error)
         plt.show()
 
-
     def generate_random_data(self, a, b):
         X = np.random.randint(100, size=100)
         Y = np.empty(100)
@@ -37,14 +36,28 @@ class LRGD:
             self.b_current = self.b_current - (e * b_gradient)
             self.error.append(cost)
 
+    def train_with_sgd(self, X, y, epochs, e):
+        rn = random.randint(0, len(y))
+        for i in range(epochs):
+            y_current = (self.a_current * X[rn]) + self.b_current
+            cost = (y[rn] - y_current)**2
+            a_gradient = -2 * X[rn] * (y[rn] - y_current)
+            b_gradient = -2 * y[rn] - y_current
+            self.a_current = self.a_current - (e * a_gradient)
+            self.b_current = self.b_current - (e * b_gradient)
+            self.error.append(cost)
+
+    def train_with_minibatch(self, X, y, epochs, e):
+        print("TODO")
+
     def predict(self, X):
         return self.a_current * X + self.b_current
 
 
 if __name__ == '__main__':
     epsilon = 0.00001
-    iterations = 50
+    iterations = 100
     lgrd = LRGD()
     X, Y = lgrd.generate_random_data(3, 7)
-    lgrd.train_with_gd(X, Y, iterations, epsilon)
+    lgrd.train_with_sgd(X, Y, iterations, epsilon)
     lgrd.plot_data_label(X, Y)
